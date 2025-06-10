@@ -17,6 +17,9 @@ uint8_t Val_S;
 
 #define HEX_CHARS      "0123456789ABCDEF"
 
+extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim11;
 
 extern uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);
 
@@ -257,6 +260,14 @@ void runRadio(void)
 
 void movement(void)
 {
+	HAL_TIM_PWM_Start( &htim1,TIM_CHANNEL_1 );
+	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,150);
+
+	HAL_TIM_PWM_Start( &htim2,TIM_CHANNEL_1 );
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,150);
+
+	HAL_TIM_PWM_Start( &htim11,TIM_CHANNEL_1 );
+	__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,150);
 
 		HAL_Delay(1000);
 		// RX/TX disabled
@@ -331,7 +342,8 @@ void movement(void)
 	    nRF24_CE_H();
 
 	    // The main loop
-	    while (1) {
+	    while (1)
+	    {
 	    	//
 	    	// Constantly poll the status of the RX FIFO and get a payload if FIFO is not empty
 	    	//
@@ -352,11 +364,24 @@ void movement(void)
 				HAL_Delay(2);
 				uint8_t message[32] = {0xaa,0x44,0x11,0x22,0x55};
 				send_payload(message, 5);
-	//			send_payload(nRF24_payload, payload_length);
+				//send_payload(nRF24_payload, payload_length);
+
+				Val_X = nRF24_payload[2];
+				Val_Y = nRF24_payload[3];
+				Val_S = nRF24_payload[1];
 	    	}
-	    	Val_X = nRF24_payload[0];
-	    	Val_Y = nRF24_payload[1];
-	    	Val_S = nRF24_payload[2];
+	    	// speed of the drum
+	    	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,150 + Val_S*50/256);
+
+	    	//speed of the left wheel
+	    	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,100 + Val_Y*100/256 - (256 - Val_X)*50/256);
+
+	    	//speed of the right wheel
+	    	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,100 + Val_Y*100/256 + (256 - Val_X)*50/256);
+
+
+
+
 	    }
 
 }
