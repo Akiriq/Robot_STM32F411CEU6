@@ -261,13 +261,13 @@ void runRadio(void)
 void movement(void)
 {
 	HAL_TIM_PWM_Start( &htim1,TIM_CHANNEL_1 );
-	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,150);
+	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,1500);
 
 	HAL_TIM_PWM_Start( &htim2,TIM_CHANNEL_1 );
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,150);
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,1500);
 
 	HAL_TIM_PWM_Start( &htim11,TIM_CHANNEL_1 );
-	__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,150);
+	__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1500);
 
 		HAL_Delay(1000);
 		// RX/TX disabled
@@ -321,12 +321,12 @@ void movement(void)
 	    nRF24_SetAddrWidth(3);
 
 	    // Configure RX PIPE#1
-	    static const uint8_t nRF24_ADDR_Rx[] = { 0xE7, 0x1C, 0xE4 };
+	    static const uint8_t nRF24_ADDR_Rx[] = { 0xE7, 0x1C, 0xE3 };
 	    nRF24_SetAddr(nRF24_PIPE1, nRF24_ADDR_Rx); // program address for RX pipe #1
 	    nRF24_SetRXPipe(nRF24_PIPE1, nRF24_AA_OFF, 5); // Auto-ACK: disabled, payload length: 5 bytes
 
 	    // Configure TX PIPE
-	    static const uint8_t nRF24_ADDR_Tx[] = { 0xE7, 0x1C, 0xE3 };
+	    static const uint8_t nRF24_ADDR_Tx[] = { 0xE7, 0x1C, 0xE4 };
 	    nRF24_SetAddr(nRF24_PIPETX, nRF24_ADDR_Tx); // program TX address
 
 	    // Set TX power (maximum)
@@ -371,14 +371,15 @@ void movement(void)
 				Val_S = nRF24_payload[1];
 	    	}
 	    	// speed of the drum
-	    	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,150 + Val_S*50/256);
+	    	__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1500 + Val_S*500/256);
 
 	    	//speed of the left wheel
-	    	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,100 + Val_Y*100/256 - (256 - Val_X)*50/256);
+	    	//__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1000 + Val_Y*1000/256 - (256 - Val_X)*500/256);
+	    	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,1000 + Val_Y*1000/256 - (128 - Val_X)*500/128);
 
 	    	//speed of the right wheel
-	    	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,100 + Val_Y*100/256 + (256 - Val_X)*50/256);
-
+	    	//__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1000 + Val_Y*1000/256 + (256 - Val_X)*500/256);
+	    	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,1000 + Val_Y*1000/256 + (128 - Val_X)*500/128);
 
 
 
