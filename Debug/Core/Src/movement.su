@@ -1,7 +1,7 @@
 ../Core/Inc/support.h:13:20:nRF24_CE_L	8	static
 ../Core/Inc/support.h:17:20:nRF24_CE_H	8	static
-../Core/Src/movement.c:35:6:Toggle_LED	8	static
-../Core/Src/movement.c:64:16:nRF24_TransmitPacket	24	static
-../Core/Src/movement.c:117:6:send_payload	16	static
-../Core/Src/movement.c:156:6:runRadio	8	static
-../Core/Src/movement.c:261:6:movement	40	static
+../Core/Src/movement.c:38:6:Toggle_LED	8	static
+../Core/Src/movement.c:67:16:nRF24_TransmitPacket	24	static
+../Core/Src/movement.c:120:6:send_payload	16	static
+../Core/Src/movement.c:157:9:channel	16	static
+../Core/Src/movement.c:221:6:movement	72	static
