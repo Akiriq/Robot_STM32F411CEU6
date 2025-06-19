@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0001af6f  00000000  00000000  00028140  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000198f1  00000000  00000000  000430af  2**0
+ 17 .debug_line   00019d3d  00000000  00000000  000430af  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0009e462  00000000  00000000  0005c9a0  2**0
+ 18 .debug_str    0009e484  00000000  00000000  0005cdec  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000fae02  2**0
+ 19 .comment      00000043  00000000  00000000  000fb270  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000059ac  00000000  00000000  000fae48  2**2
+ 20 .debug_frame  000059ac  00000000  00000000  000fb2b4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000056  00000000  00000000  001007f4  2**0
+ 21 .debug_line_str 00000078  00000000  00000000  00100c60  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -2061,30 +2061,30 @@ void movement(void)
  8000e48:	af00      	add	r7, sp, #0
 	HAL_TIM_PWM_Start( &htim1,TIM_CHANNEL_1 );
  8000e4a:	2100      	movs	r1, #0
- 8000e4c:	48ab      	ldr	r0, [pc, #684]	@ (80010fc <movement+0x2b8>)
+ 8000e4c:	48ac      	ldr	r0, [pc, #688]	@ (8001100 <movement+0x2bc>)
  8000e4e:	f004 f84f 	bl	8004ef0 <HAL_TIM_PWM_Start>
 	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,1500);
- 8000e52:	4baa      	ldr	r3, [pc, #680]	@ (80010fc <movement+0x2b8>)
+ 8000e52:	4bab      	ldr	r3, [pc, #684]	@ (8001100 <movement+0x2bc>)
  8000e54:	681b      	ldr	r3, [r3, #0]
  8000e56:	f240 52dc 	movw	r2, #1500	@ 0x5dc
  8000e5a:	635a      	str	r2, [r3, #52]	@ 0x34
 
 	HAL_TIM_PWM_Start( &htim2,TIM_CHANNEL_1 );
  8000e5c:	2100      	movs	r1, #0
- 8000e5e:	48a8      	ldr	r0, [pc, #672]	@ (8001100 <movement+0x2bc>)
+ 8000e5e:	48a9      	ldr	r0, [pc, #676]	@ (8001104 <movement+0x2c0>)
  8000e60:	f004 f846 	bl	8004ef0 <HAL_TIM_PWM_Start>
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,1500);
- 8000e64:	4ba6      	ldr	r3, [pc, #664]	@ (8001100 <movement+0x2bc>)
+ 8000e64:	4ba7      	ldr	r3, [pc, #668]	@ (8001104 <movement+0x2c0>)
  8000e66:	681b      	ldr	r3, [r3, #0]
  8000e68:	f240 52dc 	movw	r2, #1500	@ 0x5dc
  8000e6c:	635a      	str	r2, [r3, #52]	@ 0x34
 
 	HAL_TIM_PWM_Start( &htim11,TIM_CHANNEL_1 );
  8000e6e:	2100      	movs	r1, #0
- 8000e70:	48a4      	ldr	r0, [pc, #656]	@ (8001104 <movement+0x2c0>)
+ 8000e70:	48a5      	ldr	r0, [pc, #660]	@ (8001108 <movement+0x2c4>)
  8000e72:	f004 f83d 	bl	8004ef0 <HAL_TIM_PWM_Start>
 	__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1500);
- 8000e76:	4ba3      	ldr	r3, [pc, #652]	@ (8001104 <movement+0x2c0>)
+ 8000e76:	4ba4      	ldr	r3, [pc, #656]	@ (8001108 <movement+0x2c4>)
  8000e78:	681b      	ldr	r3, [r3, #0]
  8000e7a:	f240 52dc 	movw	r2, #1500	@ 0x5dc
  8000e7e:	635a      	str	r2, [r3, #52]	@ 0x34
@@ -2165,7 +2165,7 @@ void movement(void)
 	// Configure RX PIPE#1
 	static const uint8_t nRF24_ADDR_Rx[] = { 0xE7, 0x1C, 0xE3 };
 	nRF24_SetAddr(nRF24_PIPE1, nRF24_ADDR_Rx); // program address for RX pipe #1
- 8000ede:	498a      	ldr	r1, [pc, #552]	@ (8001108 <movement+0x2c4>)
+ 8000ede:	498b      	ldr	r1, [pc, #556]	@ (800110c <movement+0x2c8>)
  8000ee0:	2001      	movs	r0, #1
  8000ee2:	f000 fb9d 	bl	8001620 <nRF24_SetAddr>
 	nRF24_SetRXPipe(nRF24_PIPE1, nRF24_AA_OFF, 5); // Auto-ACK: disabled, payload length: 5 bytes
@@ -2177,7 +2177,7 @@ void movement(void)
 	// Configure TX PIPE
 	static const uint8_t nRF24_ADDR_Tx[] = { 0xE7, 0x1C, 0xE4 };
 	nRF24_SetAddr(nRF24_PIPETX, nRF24_ADDR_Tx); // program TX address
- 8000ef0:	4986      	ldr	r1, [pc, #536]	@ (800110c <movement+0x2c8>)
+ 8000ef0:	4987      	ldr	r1, [pc, #540]	@ (8001110 <movement+0x2cc>)
  8000ef2:	2006      	movs	r0, #6
  8000ef4:	f000 fb94 	bl	8001620 <nRF24_SetAddr>
 
@@ -2203,36 +2203,36 @@ void movement(void)
 	// The main loop
 	while (1)
 	{
-		HAL_Delay(2);
- 8000f0e:	2002      	movs	r0, #2
+		HAL_Delay(1);
+ 8000f0e:	2001      	movs	r0, #1
  8000f10:	f001 f848 	bl	8001fa4 <HAL_Delay>
 		// watch dog to make hall motor break if no comunication for 100 cycles
 		if (++wd > 100)
- 8000f14:	4b7e      	ldr	r3, [pc, #504]	@ (8001110 <movement+0x2cc>)
+ 8000f14:	4b7f      	ldr	r3, [pc, #508]	@ (8001114 <movement+0x2d0>)
  8000f16:	681b      	ldr	r3, [r3, #0]
  8000f18:	3301      	adds	r3, #1
- 8000f1a:	4a7d      	ldr	r2, [pc, #500]	@ (8001110 <movement+0x2cc>)
+ 8000f1a:	4a7e      	ldr	r2, [pc, #504]	@ (8001114 <movement+0x2d0>)
  8000f1c:	6013      	str	r3, [r2, #0]
- 8000f1e:	4b7c      	ldr	r3, [pc, #496]	@ (8001110 <movement+0x2cc>)
+ 8000f1e:	4b7d      	ldr	r3, [pc, #500]	@ (8001114 <movement+0x2d0>)
  8000f20:	681b      	ldr	r3, [r3, #0]
  8000f22:	2b64      	cmp	r3, #100	@ 0x64
  8000f24:	d924      	bls.n	8000f70 <movement+0x12c>
 		{
 			// to make all motor break
 			__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,1500);
- 8000f26:	4b75      	ldr	r3, [pc, #468]	@ (80010fc <movement+0x2b8>)
+ 8000f26:	4b76      	ldr	r3, [pc, #472]	@ (8001100 <movement+0x2bc>)
  8000f28:	681b      	ldr	r3, [r3, #0]
  8000f2a:	f240 52dc 	movw	r2, #1500	@ 0x5dc
  8000f2e:	635a      	str	r2, [r3, #52]	@ 0x34
 			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,1500);
- 8000f30:	4b73      	ldr	r3, [pc, #460]	@ (8001100 <movement+0x2bc>)
+ 8000f30:	4b74      	ldr	r3, [pc, #464]	@ (8001104 <movement+0x2c0>)
  8000f32:	681b      	ldr	r3, [r3, #0]
  8000f34:	f240 52dc 	movw	r2, #1500	@ 0x5dc
  8000f38:	635a      	str	r2, [r3, #52]	@ 0x34
-			__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1500);
- 8000f3a:	4b72      	ldr	r3, [pc, #456]	@ (8001104 <movement+0x2c0>)
+			__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1510);
+ 8000f3a:	4b73      	ldr	r3, [pc, #460]	@ (8001108 <movement+0x2c4>)
  8000f3c:	681b      	ldr	r3, [r3, #0]
- 8000f3e:	f240 52dc 	movw	r2, #1500	@ 0x5dc
+ 8000f3e:	f240 52e6 	movw	r2, #1510	@ 0x5e6
  8000f42:	635a      	str	r2, [r3, #52]	@ 0x34
 
 			HAL_Delay(100);
@@ -2242,15 +2242,15 @@ void movement(void)
 			// to stop all PWM
 			HAL_TIM_PWM_Stop( &htim1,TIM_CHANNEL_1 );
  8000f4a:	2100      	movs	r1, #0
- 8000f4c:	486b      	ldr	r0, [pc, #428]	@ (80010fc <movement+0x2b8>)
+ 8000f4c:	486c      	ldr	r0, [pc, #432]	@ (8001100 <movement+0x2bc>)
  8000f4e:	f004 f87f 	bl	8005050 <HAL_TIM_PWM_Stop>
 			HAL_TIM_PWM_Stop( &htim2,TIM_CHANNEL_1 );
  8000f52:	2100      	movs	r1, #0
- 8000f54:	486a      	ldr	r0, [pc, #424]	@ (8001100 <movement+0x2bc>)
+ 8000f54:	486b      	ldr	r0, [pc, #428]	@ (8001104 <movement+0x2c0>)
  8000f56:	f004 f87b 	bl	8005050 <HAL_TIM_PWM_Stop>
 			HAL_TIM_PWM_Stop( &htim11,TIM_CHANNEL_1 );
  8000f5a:	2100      	movs	r1, #0
- 8000f5c:	4869      	ldr	r0, [pc, #420]	@ (8001104 <movement+0x2c0>)
+ 8000f5c:	486a      	ldr	r0, [pc, #424]	@ (8001108 <movement+0x2c4>)
  8000f5e:	f004 f877 	bl	8005050 <HAL_TIM_PWM_Stop>
 
 
@@ -2275,18 +2275,19 @@ void movement(void)
  8000f76:	2b01      	cmp	r3, #1
  8000f78:	d043      	beq.n	8001002 <movement+0x1be>
 		{
+
 			wd = 0;
- 8000f7a:	4b65      	ldr	r3, [pc, #404]	@ (8001110 <movement+0x2cc>)
+ 8000f7a:	4b66      	ldr	r3, [pc, #408]	@ (8001114 <movement+0x2d0>)
  8000f7c:	2200      	movs	r2, #0
  8000f7e:	601a      	str	r2, [r3, #0]
 
 			if (++blink > 200)
- 8000f80:	4b64      	ldr	r3, [pc, #400]	@ (8001114 <movement+0x2d0>)
+ 8000f80:	4b65      	ldr	r3, [pc, #404]	@ (8001118 <movement+0x2d4>)
  8000f82:	681b      	ldr	r3, [r3, #0]
  8000f84:	3301      	adds	r3, #1
- 8000f86:	4a63      	ldr	r2, [pc, #396]	@ (8001114 <movement+0x2d0>)
+ 8000f86:	4a64      	ldr	r2, [pc, #400]	@ (8001118 <movement+0x2d4>)
  8000f88:	6013      	str	r3, [r2, #0]
- 8000f8a:	4b62      	ldr	r3, [pc, #392]	@ (8001114 <movement+0x2d0>)
+ 8000f8a:	4b63      	ldr	r3, [pc, #396]	@ (8001118 <movement+0x2d4>)
  8000f8c:	681b      	ldr	r3, [r3, #0]
  8000f8e:	2bc8      	cmp	r3, #200	@ 0xc8
  8000f90:	d904      	bls.n	8000f9c <movement+0x158>
@@ -2294,18 +2295,18 @@ void movement(void)
 				Toggle_LED();
  8000f92:	f7ff fe45 	bl	8000c20 <Toggle_LED>
 				blink = 0;
- 8000f96:	4b5f      	ldr	r3, [pc, #380]	@ (8001114 <movement+0x2d0>)
+ 8000f96:	4b60      	ldr	r3, [pc, #384]	@ (8001118 <movement+0x2d4>)
  8000f98:	2200      	movs	r2, #0
  8000f9a:	601a      	str	r2, [r3, #0]
 			}
 			// Get a payload from the transceiver
 			pipe = nRF24_ReadPayload(nRF24_payload, &payload_length);
- 8000f9c:	495e      	ldr	r1, [pc, #376]	@ (8001118 <movement+0x2d4>)
- 8000f9e:	485f      	ldr	r0, [pc, #380]	@ (800111c <movement+0x2d8>)
+ 8000f9c:	495f      	ldr	r1, [pc, #380]	@ (800111c <movement+0x2d8>)
+ 8000f9e:	4860      	ldr	r0, [pc, #384]	@ (8001120 <movement+0x2dc>)
  8000fa0:	f000 fcde 	bl	8001960 <nRF24_ReadPayload>
  8000fa4:	4603      	mov	r3, r0
  8000fa6:	461a      	mov	r2, r3
- 8000fa8:	4b5d      	ldr	r3, [pc, #372]	@ (8001120 <movement+0x2dc>)
+ 8000fa8:	4b5e      	ldr	r3, [pc, #376]	@ (8001124 <movement+0x2e0>)
  8000faa:	701a      	strb	r2, [r3, #0]
 
 			// Clear all pending IRQ flags
@@ -2319,7 +2320,7 @@ void movement(void)
  8000fb0:	2002      	movs	r0, #2
  8000fb2:	f000 fff7 	bl	8001fa4 <HAL_Delay>
 			uint8_t message[32] = {0xaa,0x44,0x11,0x22,0x55};
- 8000fb6:	4a5b      	ldr	r2, [pc, #364]	@ (8001124 <movement+0x2e0>)
+ 8000fb6:	4a5c      	ldr	r2, [pc, #368]	@ (8001128 <movement+0x2e4>)
  8000fb8:	1d3b      	adds	r3, r7, #4
  8000fba:	e892 0003 	ldmia.w	r2, {r0, r1}
  8000fbe:	6018      	str	r0, [r3, #0]
@@ -2342,36 +2343,36 @@ void movement(void)
 			//send_payload(nRF24_payload, payload_length);
 
 			dir_R = nRF24_payload[0];
- 8000fe2:	4b4e      	ldr	r3, [pc, #312]	@ (800111c <movement+0x2d8>)
+ 8000fe2:	4b4f      	ldr	r3, [pc, #316]	@ (8001120 <movement+0x2dc>)
  8000fe4:	781a      	ldrb	r2, [r3, #0]
- 8000fe6:	4b50      	ldr	r3, [pc, #320]	@ (8001128 <movement+0x2e4>)
+ 8000fe6:	4b51      	ldr	r3, [pc, #324]	@ (800112c <movement+0x2e8>)
  8000fe8:	701a      	strb	r2, [r3, #0]
 			val_S = nRF24_payload[1];
- 8000fea:	4b4c      	ldr	r3, [pc, #304]	@ (800111c <movement+0x2d8>)
+ 8000fea:	4b4d      	ldr	r3, [pc, #308]	@ (8001120 <movement+0x2dc>)
  8000fec:	785a      	ldrb	r2, [r3, #1]
- 8000fee:	4b4f      	ldr	r3, [pc, #316]	@ (800112c <movement+0x2e8>)
+ 8000fee:	4b50      	ldr	r3, [pc, #320]	@ (8001130 <movement+0x2ec>)
  8000ff0:	701a      	strb	r2, [r3, #0]
 			val_X = nRF24_payload[2];
- 8000ff2:	4b4a      	ldr	r3, [pc, #296]	@ (800111c <movement+0x2d8>)
+ 8000ff2:	4b4b      	ldr	r3, [pc, #300]	@ (8001120 <movement+0x2dc>)
  8000ff4:	789a      	ldrb	r2, [r3, #2]
- 8000ff6:	4b4e      	ldr	r3, [pc, #312]	@ (8001130 <movement+0x2ec>)
+ 8000ff6:	4b4f      	ldr	r3, [pc, #316]	@ (8001134 <movement+0x2f0>)
  8000ff8:	701a      	strb	r2, [r3, #0]
 			val_Y = nRF24_payload[3];
- 8000ffa:	4b48      	ldr	r3, [pc, #288]	@ (800111c <movement+0x2d8>)
+ 8000ffa:	4b49      	ldr	r3, [pc, #292]	@ (8001120 <movement+0x2dc>)
  8000ffc:	78da      	ldrb	r2, [r3, #3]
- 8000ffe:	4b4d      	ldr	r3, [pc, #308]	@ (8001134 <movement+0x2f0>)
+ 8000ffe:	4b4e      	ldr	r3, [pc, #312]	@ (8001138 <movement+0x2f4>)
  8001000:	701a      	strb	r2, [r3, #0]
 		}
-
+		// uint32_t speed_D_stop = 1450;
 		if (dir_R == 0xaa)
- 8001002:	4b49      	ldr	r3, [pc, #292]	@ (8001128 <movement+0x2e4>)
+ 8001002:	4b4a      	ldr	r3, [pc, #296]	@ (800112c <movement+0x2e8>)
  8001004:	781b      	ldrb	r3, [r3, #0]
  8001006:	2baa      	cmp	r3, #170	@ 0xaa
- 8001008:	f040 8096 	bne.w	8001138 <movement+0x2f4>
+ 8001008:	f040 8098 	bne.w	800113c <movement+0x2f8>
 		{
 			// speed of the drum
-			uint32_t speed_D = 1500 + val_S*500/256;
- 800100c:	4b47      	ldr	r3, [pc, #284]	@ (800112c <movement+0x2e8>)
+			uint32_t speed_D = 1510 + val_S*500/256;
+ 800100c:	4b48      	ldr	r3, [pc, #288]	@ (8001130 <movement+0x2ec>)
  800100e:	781b      	ldrb	r3, [r3, #0]
  8001010:	461a      	mov	r2, r3
  8001012:	f44f 73fa 	mov.w	r3, #500	@ 0x1f4
@@ -2380,7 +2381,7 @@ void movement(void)
  800101c:	da00      	bge.n	8001020 <movement+0x1dc>
  800101e:	33ff      	adds	r3, #255	@ 0xff
  8001020:	121b      	asrs	r3, r3, #8
- 8001022:	f203 53dc 	addw	r3, r3, #1500	@ 0x5dc
+ 8001022:	f203 53e6 	addw	r3, r3, #1510	@ 0x5e6
  8001026:	63fb      	str	r3, [r7, #60]	@ 0x3c
 			if (speed_D > 2000) speed_D = 2000;
  8001028:	6bfb      	ldr	r3, [r7, #60]	@ 0x3c
@@ -2391,7 +2392,7 @@ void movement(void)
 
 			//speed of the left wheel
 			uint32_t speed_L = 1000 + val_Y*1000/256 - (128 - val_X)*500/128;
- 8001036:	4b3f      	ldr	r3, [pc, #252]	@ (8001134 <movement+0x2f0>)
+ 8001036:	4b40      	ldr	r3, [pc, #256]	@ (8001138 <movement+0x2f4>)
  8001038:	781b      	ldrb	r3, [r3, #0]
  800103a:	461a      	mov	r2, r3
  800103c:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
@@ -2401,7 +2402,7 @@ void movement(void)
  8001048:	33ff      	adds	r3, #255	@ 0xff
  800104a:	121b      	asrs	r3, r3, #8
  800104c:	f503 727a 	add.w	r2, r3, #1000	@ 0x3e8
- 8001050:	4b37      	ldr	r3, [pc, #220]	@ (8001130 <movement+0x2ec>)
+ 8001050:	4b38      	ldr	r3, [pc, #224]	@ (8001134 <movement+0x2f0>)
  8001052:	781b      	ldrb	r3, [r3, #0]
  8001054:	f1c3 0380 	rsb	r3, r3, #128	@ 0x80
  8001058:	f44f 71fa 	mov.w	r1, #500	@ 0x1f4
@@ -2428,8 +2429,8 @@ void movement(void)
  800108a:	63bb      	str	r3, [r7, #56]	@ 0x38
 
 			//speed of the right wheel
-			uint32_t speed_R = 1000 + val_Y*1000/256 + (128 - val_X)*500/128;
- 800108c:	4b29      	ldr	r3, [pc, #164]	@ (8001134 <movement+0x2f0>)
+			uint32_t speed_R = 2000 - val_Y*1000/256 - (128 - val_X)*500/128;
+ 800108c:	4b2a      	ldr	r3, [pc, #168]	@ (8001138 <movement+0x2f4>)
  800108e:	781b      	ldrb	r3, [r3, #0]
  8001090:	461a      	mov	r2, r3
  8001092:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
@@ -2438,153 +2439,153 @@ void movement(void)
  800109c:	da00      	bge.n	80010a0 <movement+0x25c>
  800109e:	33ff      	adds	r3, #255	@ 0xff
  80010a0:	121b      	asrs	r3, r3, #8
- 80010a2:	f503 727a 	add.w	r2, r3, #1000	@ 0x3e8
- 80010a6:	4b22      	ldr	r3, [pc, #136]	@ (8001130 <movement+0x2ec>)
- 80010a8:	781b      	ldrb	r3, [r3, #0]
- 80010aa:	f1c3 0380 	rsb	r3, r3, #128	@ 0x80
- 80010ae:	f44f 71fa 	mov.w	r1, #500	@ 0x1f4
- 80010b2:	fb01 f303 	mul.w	r3, r1, r3
- 80010b6:	2b00      	cmp	r3, #0
- 80010b8:	da00      	bge.n	80010bc <movement+0x278>
- 80010ba:	337f      	adds	r3, #127	@ 0x7f
- 80010bc:	11db      	asrs	r3, r3, #7
- 80010be:	4413      	add	r3, r2
- 80010c0:	637b      	str	r3, [r7, #52]	@ 0x34
+ 80010a2:	425b      	negs	r3, r3
+ 80010a4:	f503 62fa 	add.w	r2, r3, #2000	@ 0x7d0
+ 80010a8:	4b22      	ldr	r3, [pc, #136]	@ (8001134 <movement+0x2f0>)
+ 80010aa:	781b      	ldrb	r3, [r3, #0]
+ 80010ac:	f1c3 0380 	rsb	r3, r3, #128	@ 0x80
+ 80010b0:	f44f 71fa 	mov.w	r1, #500	@ 0x1f4
+ 80010b4:	fb01 f303 	mul.w	r3, r1, r3
+ 80010b8:	2b00      	cmp	r3, #0
+ 80010ba:	da00      	bge.n	80010be <movement+0x27a>
+ 80010bc:	337f      	adds	r3, #127	@ 0x7f
+ 80010be:	11db      	asrs	r3, r3, #7
+ 80010c0:	425b      	negs	r3, r3
+ 80010c2:	4413      	add	r3, r2
+ 80010c4:	637b      	str	r3, [r7, #52]	@ 0x34
 			if (speed_R < 1000) speed_R = 1000;
- 80010c2:	6b7b      	ldr	r3, [r7, #52]	@ 0x34
- 80010c4:	f5b3 7f7a 	cmp.w	r3, #1000	@ 0x3e8
- 80010c8:	d203      	bcs.n	80010d2 <movement+0x28e>
- 80010ca:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 80010ce:	637b      	str	r3, [r7, #52]	@ 0x34
- 80010d0:	e006      	b.n	80010e0 <movement+0x29c>
+ 80010c6:	6b7b      	ldr	r3, [r7, #52]	@ 0x34
+ 80010c8:	f5b3 7f7a 	cmp.w	r3, #1000	@ 0x3e8
+ 80010cc:	d203      	bcs.n	80010d6 <movement+0x292>
+ 80010ce:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
+ 80010d2:	637b      	str	r3, [r7, #52]	@ 0x34
+ 80010d4:	e006      	b.n	80010e4 <movement+0x2a0>
 			else if (speed_R > 2000) speed_R =2000;
- 80010d2:	6b7b      	ldr	r3, [r7, #52]	@ 0x34
- 80010d4:	f5b3 6ffa 	cmp.w	r3, #2000	@ 0x7d0
- 80010d8:	d902      	bls.n	80010e0 <movement+0x29c>
- 80010da:	f44f 63fa 	mov.w	r3, #2000	@ 0x7d0
- 80010de:	637b      	str	r3, [r7, #52]	@ 0x34
+ 80010d6:	6b7b      	ldr	r3, [r7, #52]	@ 0x34
+ 80010d8:	f5b3 6ffa 	cmp.w	r3, #2000	@ 0x7d0
+ 80010dc:	d902      	bls.n	80010e4 <movement+0x2a0>
+ 80010de:	f44f 63fa 	mov.w	r3, #2000	@ 0x7d0
+ 80010e2:	637b      	str	r3, [r7, #52]	@ 0x34
 
 			__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,speed_D);
- 80010e0:	4b08      	ldr	r3, [pc, #32]	@ (8001104 <movement+0x2c0>)
- 80010e2:	681b      	ldr	r3, [r3, #0]
- 80010e4:	6bfa      	ldr	r2, [r7, #60]	@ 0x3c
- 80010e6:	635a      	str	r2, [r3, #52]	@ 0x34
+ 80010e4:	4b08      	ldr	r3, [pc, #32]	@ (8001108 <movement+0x2c4>)
+ 80010e6:	681b      	ldr	r3, [r3, #0]
+ 80010e8:	6bfa      	ldr	r2, [r7, #60]	@ 0x3c
+ 80010ea:	635a      	str	r2, [r3, #52]	@ 0x34
 			__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,speed_L);
- 80010e8:	4b04      	ldr	r3, [pc, #16]	@ (80010fc <movement+0x2b8>)
- 80010ea:	681b      	ldr	r3, [r3, #0]
- 80010ec:	6bba      	ldr	r2, [r7, #56]	@ 0x38
- 80010ee:	635a      	str	r2, [r3, #52]	@ 0x34
+ 80010ec:	4b04      	ldr	r3, [pc, #16]	@ (8001100 <movement+0x2bc>)
+ 80010ee:	681b      	ldr	r3, [r3, #0]
+ 80010f0:	6bba      	ldr	r2, [r7, #56]	@ 0x38
+ 80010f2:	635a      	str	r2, [r3, #52]	@ 0x34
 			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,speed_R);
- 80010f0:	4b03      	ldr	r3, [pc, #12]	@ (8001100 <movement+0x2bc>)
- 80010f2:	681b      	ldr	r3, [r3, #0]
- 80010f4:	6b7a      	ldr	r2, [r7, #52]	@ 0x34
- 80010f6:	635a      	str	r2, [r3, #52]	@ 0x34
- 80010f8:	e709      	b.n	8000f0e <movement+0xca>
- 80010fa:	bf00      	nop
- 80010fc:	200001b8 	.word	0x200001b8
- 8001100:	20000200 	.word	0x20000200
- 8001104:	200002d8 	.word	0x200002d8
- 8001108:	08009900 	.word	0x08009900
- 800110c:	08009904 	.word	0x08009904
- 8001110:	20000324 	.word	0x20000324
- 8001114:	20000328 	.word	0x20000328
- 8001118:	2000034d 	.word	0x2000034d
- 800111c:	2000032c 	.word	0x2000032c
- 8001120:	2000034c 	.word	0x2000034c
- 8001124:	08009890 	.word	0x08009890
- 8001128:	20000323 	.word	0x20000323
- 800112c:	20000322 	.word	0x20000322
- 8001130:	20000320 	.word	0x20000320
- 8001134:	20000321 	.word	0x20000321
+ 80010f4:	4b03      	ldr	r3, [pc, #12]	@ (8001104 <movement+0x2c0>)
+ 80010f6:	681b      	ldr	r3, [r3, #0]
+ 80010f8:	6b7a      	ldr	r2, [r7, #52]	@ 0x34
+ 80010fa:	635a      	str	r2, [r3, #52]	@ 0x34
+ 80010fc:	e707      	b.n	8000f0e <movement+0xca>
+ 80010fe:	bf00      	nop
+ 8001100:	200001b8 	.word	0x200001b8
+ 8001104:	20000200 	.word	0x20000200
+ 8001108:	200002d8 	.word	0x200002d8
+ 800110c:	08009900 	.word	0x08009900
+ 8001110:	08009904 	.word	0x08009904
+ 8001114:	20000324 	.word	0x20000324
+ 8001118:	20000328 	.word	0x20000328
+ 800111c:	2000034d 	.word	0x2000034d
+ 8001120:	2000032c 	.word	0x2000032c
+ 8001124:	2000034c 	.word	0x2000034c
+ 8001128:	08009890 	.word	0x08009890
+ 800112c:	20000323 	.word	0x20000323
+ 8001130:	20000322 	.word	0x20000322
+ 8001134:	20000320 	.word	0x20000320
+ 8001138:	20000321 	.word	0x20000321
 		}
 		else if (dir_R == 0xbb)
- 8001138:	4b50      	ldr	r3, [pc, #320]	@ (800127c <movement+0x438>)
- 800113a:	781b      	ldrb	r3, [r3, #0]
- 800113c:	2bbb      	cmp	r3, #187	@ 0xbb
- 800113e:	d179      	bne.n	8001234 <movement+0x3f0>
+ 800113c:	4b4f      	ldr	r3, [pc, #316]	@ (800127c <movement+0x438>)
+ 800113e:	781b      	ldrb	r3, [r3, #0]
+ 8001140:	2bbb      	cmp	r3, #187	@ 0xbb
+ 8001142:	d177      	bne.n	8001234 <movement+0x3f0>
 		{
 			// speed of the drum
-			uint32_t speed_D = 1500 - val_S*500/256;
- 8001140:	4b4f      	ldr	r3, [pc, #316]	@ (8001280 <movement+0x43c>)
- 8001142:	781b      	ldrb	r3, [r3, #0]
- 8001144:	461a      	mov	r2, r3
- 8001146:	f44f 73fa 	mov.w	r3, #500	@ 0x1f4
- 800114a:	fb02 f303 	mul.w	r3, r2, r3
- 800114e:	2b00      	cmp	r3, #0
- 8001150:	da00      	bge.n	8001154 <movement+0x310>
- 8001152:	33ff      	adds	r3, #255	@ 0xff
- 8001154:	121b      	asrs	r3, r3, #8
- 8001156:	425b      	negs	r3, r3
- 8001158:	f203 53dc 	addw	r3, r3, #1500	@ 0x5dc
- 800115c:	633b      	str	r3, [r7, #48]	@ 0x30
+			uint32_t speed_D = 1510 - val_S*500/256;
+ 8001144:	4b4e      	ldr	r3, [pc, #312]	@ (8001280 <movement+0x43c>)
+ 8001146:	781b      	ldrb	r3, [r3, #0]
+ 8001148:	461a      	mov	r2, r3
+ 800114a:	f44f 73fa 	mov.w	r3, #500	@ 0x1f4
+ 800114e:	fb02 f303 	mul.w	r3, r2, r3
+ 8001152:	2b00      	cmp	r3, #0
+ 8001154:	da00      	bge.n	8001158 <movement+0x314>
+ 8001156:	33ff      	adds	r3, #255	@ 0xff
+ 8001158:	121b      	asrs	r3, r3, #8
+ 800115a:	425b      	negs	r3, r3
+ 800115c:	f203 53e6 	addw	r3, r3, #1510	@ 0x5e6
+ 8001160:	633b      	str	r3, [r7, #48]	@ 0x30
 			if (speed_D < 1000) speed_D = 1000;
- 800115e:	6b3b      	ldr	r3, [r7, #48]	@ 0x30
- 8001160:	f5b3 7f7a 	cmp.w	r3, #1000	@ 0x3e8
- 8001164:	d202      	bcs.n	800116c <movement+0x328>
- 8001166:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 800116a:	633b      	str	r3, [r7, #48]	@ 0x30
+ 8001162:	6b3b      	ldr	r3, [r7, #48]	@ 0x30
+ 8001164:	f5b3 7f7a 	cmp.w	r3, #1000	@ 0x3e8
+ 8001168:	d202      	bcs.n	8001170 <movement+0x32c>
+ 800116a:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
+ 800116e:	633b      	str	r3, [r7, #48]	@ 0x30
 
 			//speed of the left wheel
 			uint32_t speed_L = 2000 - val_Y*1000/256 + (128 - val_X)*500/128;
- 800116c:	4b45      	ldr	r3, [pc, #276]	@ (8001284 <movement+0x440>)
- 800116e:	781b      	ldrb	r3, [r3, #0]
- 8001170:	461a      	mov	r2, r3
- 8001172:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 8001176:	fb02 f303 	mul.w	r3, r2, r3
- 800117a:	2b00      	cmp	r3, #0
- 800117c:	da00      	bge.n	8001180 <movement+0x33c>
- 800117e:	33ff      	adds	r3, #255	@ 0xff
- 8001180:	121b      	asrs	r3, r3, #8
- 8001182:	425b      	negs	r3, r3
- 8001184:	f503 62fa 	add.w	r2, r3, #2000	@ 0x7d0
- 8001188:	4b3f      	ldr	r3, [pc, #252]	@ (8001288 <movement+0x444>)
- 800118a:	781b      	ldrb	r3, [r3, #0]
- 800118c:	f1c3 0380 	rsb	r3, r3, #128	@ 0x80
- 8001190:	f44f 71fa 	mov.w	r1, #500	@ 0x1f4
- 8001194:	fb01 f303 	mul.w	r3, r1, r3
- 8001198:	2b00      	cmp	r3, #0
- 800119a:	da00      	bge.n	800119e <movement+0x35a>
- 800119c:	337f      	adds	r3, #127	@ 0x7f
- 800119e:	11db      	asrs	r3, r3, #7
- 80011a0:	4413      	add	r3, r2
- 80011a2:	62fb      	str	r3, [r7, #44]	@ 0x2c
+ 8001170:	4b44      	ldr	r3, [pc, #272]	@ (8001284 <movement+0x440>)
+ 8001172:	781b      	ldrb	r3, [r3, #0]
+ 8001174:	461a      	mov	r2, r3
+ 8001176:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
+ 800117a:	fb02 f303 	mul.w	r3, r2, r3
+ 800117e:	2b00      	cmp	r3, #0
+ 8001180:	da00      	bge.n	8001184 <movement+0x340>
+ 8001182:	33ff      	adds	r3, #255	@ 0xff
+ 8001184:	121b      	asrs	r3, r3, #8
+ 8001186:	425b      	negs	r3, r3
+ 8001188:	f503 62fa 	add.w	r2, r3, #2000	@ 0x7d0
+ 800118c:	4b3e      	ldr	r3, [pc, #248]	@ (8001288 <movement+0x444>)
+ 800118e:	781b      	ldrb	r3, [r3, #0]
+ 8001190:	f1c3 0380 	rsb	r3, r3, #128	@ 0x80
+ 8001194:	f44f 71fa 	mov.w	r1, #500	@ 0x1f4
+ 8001198:	fb01 f303 	mul.w	r3, r1, r3
+ 800119c:	2b00      	cmp	r3, #0
+ 800119e:	da00      	bge.n	80011a2 <movement+0x35e>
+ 80011a0:	337f      	adds	r3, #127	@ 0x7f
+ 80011a2:	11db      	asrs	r3, r3, #7
+ 80011a4:	4413      	add	r3, r2
+ 80011a6:	62fb      	str	r3, [r7, #44]	@ 0x2c
 			if (speed_L < 1000) speed_L = 1000;
- 80011a4:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
- 80011a6:	f5b3 7f7a 	cmp.w	r3, #1000	@ 0x3e8
- 80011aa:	d203      	bcs.n	80011b4 <movement+0x370>
- 80011ac:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 80011b0:	62fb      	str	r3, [r7, #44]	@ 0x2c
- 80011b2:	e006      	b.n	80011c2 <movement+0x37e>
+ 80011a8:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
+ 80011aa:	f5b3 7f7a 	cmp.w	r3, #1000	@ 0x3e8
+ 80011ae:	d203      	bcs.n	80011b8 <movement+0x374>
+ 80011b0:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
+ 80011b4:	62fb      	str	r3, [r7, #44]	@ 0x2c
+ 80011b6:	e006      	b.n	80011c6 <movement+0x382>
 			else if (speed_L > 2000) speed_L = 2000;
- 80011b4:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
- 80011b6:	f5b3 6ffa 	cmp.w	r3, #2000	@ 0x7d0
- 80011ba:	d902      	bls.n	80011c2 <movement+0x37e>
- 80011bc:	f44f 63fa 	mov.w	r3, #2000	@ 0x7d0
- 80011c0:	62fb      	str	r3, [r7, #44]	@ 0x2c
+ 80011b8:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
+ 80011ba:	f5b3 6ffa 	cmp.w	r3, #2000	@ 0x7d0
+ 80011be:	d902      	bls.n	80011c6 <movement+0x382>
+ 80011c0:	f44f 63fa 	mov.w	r3, #2000	@ 0x7d0
+ 80011c4:	62fb      	str	r3, [r7, #44]	@ 0x2c
 
 			//speed of the right wheel
-			uint32_t speed_R = 2000 - val_Y*1000/256 - (128 - val_X)*500/128;
- 80011c2:	4b30      	ldr	r3, [pc, #192]	@ (8001284 <movement+0x440>)
- 80011c4:	781b      	ldrb	r3, [r3, #0]
- 80011c6:	461a      	mov	r2, r3
- 80011c8:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 80011cc:	fb02 f303 	mul.w	r3, r2, r3
- 80011d0:	2b00      	cmp	r3, #0
- 80011d2:	da00      	bge.n	80011d6 <movement+0x392>
- 80011d4:	33ff      	adds	r3, #255	@ 0xff
- 80011d6:	121b      	asrs	r3, r3, #8
- 80011d8:	425b      	negs	r3, r3
- 80011da:	f503 62fa 	add.w	r2, r3, #2000	@ 0x7d0
- 80011de:	4b2a      	ldr	r3, [pc, #168]	@ (8001288 <movement+0x444>)
- 80011e0:	781b      	ldrb	r3, [r3, #0]
- 80011e2:	f1c3 0380 	rsb	r3, r3, #128	@ 0x80
- 80011e6:	f44f 71fa 	mov.w	r1, #500	@ 0x1f4
- 80011ea:	fb01 f303 	mul.w	r3, r1, r3
- 80011ee:	2b00      	cmp	r3, #0
- 80011f0:	da00      	bge.n	80011f4 <movement+0x3b0>
- 80011f2:	337f      	adds	r3, #127	@ 0x7f
- 80011f4:	11db      	asrs	r3, r3, #7
- 80011f6:	425b      	negs	r3, r3
+			uint32_t speed_R = 1000 + val_Y*1000/256 + (128 - val_X)*500/128;
+ 80011c6:	4b2f      	ldr	r3, [pc, #188]	@ (8001284 <movement+0x440>)
+ 80011c8:	781b      	ldrb	r3, [r3, #0]
+ 80011ca:	461a      	mov	r2, r3
+ 80011cc:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
+ 80011d0:	fb02 f303 	mul.w	r3, r2, r3
+ 80011d4:	2b00      	cmp	r3, #0
+ 80011d6:	da00      	bge.n	80011da <movement+0x396>
+ 80011d8:	33ff      	adds	r3, #255	@ 0xff
+ 80011da:	121b      	asrs	r3, r3, #8
+ 80011dc:	f503 727a 	add.w	r2, r3, #1000	@ 0x3e8
+ 80011e0:	4b29      	ldr	r3, [pc, #164]	@ (8001288 <movement+0x444>)
+ 80011e2:	781b      	ldrb	r3, [r3, #0]
+ 80011e4:	f1c3 0380 	rsb	r3, r3, #128	@ 0x80
+ 80011e8:	f44f 71fa 	mov.w	r1, #500	@ 0x1f4
+ 80011ec:	fb01 f303 	mul.w	r3, r1, r3
+ 80011f0:	2b00      	cmp	r3, #0
+ 80011f2:	da00      	bge.n	80011f6 <movement+0x3b2>
+ 80011f4:	337f      	adds	r3, #127	@ 0x7f
+ 80011f6:	11db      	asrs	r3, r3, #7
  80011f8:	4413      	add	r3, r2
  80011fa:	62bb      	str	r3, [r7, #40]	@ 0x28
 			if (speed_R < 1000) speed_R = 1000;
@@ -2642,10 +2643,10 @@ void movement(void)
  8001252:	681b      	ldr	r3, [r3, #0]
  8001254:	f240 52dc 	movw	r2, #1500	@ 0x5dc
  8001258:	635a      	str	r2, [r3, #52]	@ 0x34
-				__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1500);
+				__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1510);
  800125a:	4b0c      	ldr	r3, [pc, #48]	@ (800128c <movement+0x448>)
  800125c:	681b      	ldr	r3, [r3, #0]
- 800125e:	f240 52dc 	movw	r2, #1500	@ 0x5dc
+ 800125e:	f240 52e6 	movw	r2, #1510	@ 0x5e6
  8001262:	635a      	str	r2, [r3, #52]	@ 0x34
 				HAL_Delay(200);
  8001264:	20c8      	movs	r0, #200	@ 0xc8
@@ -2658,7 +2659,7 @@ void movement(void)
  8001272:	627a      	str	r2, [r7, #36]	@ 0x24
  8001274:	2b00      	cmp	r3, #0
  8001276:	d1e6      	bne.n	8001246 <movement+0x402>
-		HAL_Delay(2);
+		HAL_Delay(1);
  8001278:	e649      	b.n	8000f0e <movement+0xca>
  800127a:	bf00      	nop
  800127c:	20000323 	.word	0x20000323

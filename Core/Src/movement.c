@@ -305,14 +305,14 @@ void movement(void)
 	// The main loop
 	while (1)
 	{
-		HAL_Delay(2);
+		HAL_Delay(1);
 		// watch dog to make hall motor break if no comunication for 100 cycles
 		if (++wd > 100)
 		{
 			// to make all motor break
 			__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,1500);
 			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,1500);
-			__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1500);
+			__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1510);
 
 			HAL_Delay(100);
 
@@ -338,6 +338,7 @@ void movement(void)
 		//
 		if (nRF24_GetStatus_RXFIFO() != nRF24_STATUS_RXFIFO_EMPTY)
 		{
+
 			wd = 0;
 
 			if (++blink > 200)
@@ -364,11 +365,11 @@ void movement(void)
 			val_X = nRF24_payload[2];
 			val_Y = nRF24_payload[3];
 		}
-
+		// uint32_t speed_D_stop = 1450;
 		if (dir_R == 0xaa)
 		{
 			// speed of the drum
-			uint32_t speed_D = 1500 + val_S*500/256;
+			uint32_t speed_D = 1510 + val_S*500/256;
 			if (speed_D > 2000) speed_D = 2000;
 
 			//speed of the left wheel
@@ -377,7 +378,7 @@ void movement(void)
 			else if (speed_L > 2000) speed_L = 2000;
 
 			//speed of the right wheel
-			uint32_t speed_R = 1000 + val_Y*1000/256 + (128 - val_X)*500/128;
+			uint32_t speed_R = 2000 - val_Y*1000/256 - (128 - val_X)*500/128;
 			if (speed_R < 1000) speed_R = 1000;
 			else if (speed_R > 2000) speed_R =2000;
 
@@ -388,7 +389,7 @@ void movement(void)
 		else if (dir_R == 0xbb)
 		{
 			// speed of the drum
-			uint32_t speed_D = 1500 - val_S*500/256;
+			uint32_t speed_D = 1510 - val_S*500/256;
 			if (speed_D < 1000) speed_D = 1000;
 
 			//speed of the left wheel
@@ -397,7 +398,7 @@ void movement(void)
 			else if (speed_L > 2000) speed_L = 2000;
 
 			//speed of the right wheel
-			uint32_t speed_R = 2000 - val_Y*1000/256 - (128 - val_X)*500/128;
+			uint32_t speed_R = 1000 + val_Y*1000/256 + (128 - val_X)*500/128;
 			if (speed_R < 1000) speed_R = 1000;
 			else if (speed_R > 2000) speed_R =2000;
 
@@ -414,7 +415,7 @@ void movement(void)
 
 				__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,1500);
 				__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,1500);
-				__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1500);
+				__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1510);
 				HAL_Delay(200);
 				Toggle_LED();
 			}
