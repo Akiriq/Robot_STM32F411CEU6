@@ -1,7 +1,0 @@
-../Core/Inc/support.h:13:20:nRF24_CE_L	1
-../Core/Inc/support.h:17:20:nRF24_CE_H	1
-../Core/Src/movement.c:38:6:Toggle_LED	1
-../Core/Src/movement.c:67:16:nRF24_TransmitPacket	6
-../Core/Src/movement.c:120:6:send_payload	5
-../Core/Src/movement.c:157:9:channel	20
-../Core/Src/movement.c:221:6:movement	29

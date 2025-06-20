@@ -159,9 +159,9 @@ uint8_t channel(void)
 	uint8_t channel = 115;
 	uint8_t set_channel = 0;
 	//if(HAL_GPIO_ReadPin (DSW_0_GPIO_Port, DSW_0_Pin)) set_channel += 1;
-	if(HAL_GPIO_ReadPin (DSW_1_GPIO_Port, DSW_1_Pin)) set_channel += 2;
-	if(HAL_GPIO_ReadPin (DSW_2_GPIO_Port, DSW_2_Pin)) set_channel += 4;
-	if(HAL_GPIO_ReadPin (DSW_3_GPIO_Port, DSW_3_Pin)) set_channel += 8;
+	if(!HAL_GPIO_ReadPin (DSW_1_GPIO_Port, DSW_1_Pin)) set_channel += 2;
+	if(!HAL_GPIO_ReadPin (DSW_2_GPIO_Port, DSW_2_Pin)) set_channel += 8;
+	if(!HAL_GPIO_ReadPin (DSW_3_GPIO_Port, DSW_3_Pin)) set_channel += 4;
 
 	switch(set_channel)
 	{
@@ -220,29 +220,28 @@ uint8_t channel(void)
 
 void movement(void)
 {
-	HAL_TIM_PWM_Start( &htim1,TIM_CHANNEL_1 );
 	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,1500);
-
-	HAL_TIM_PWM_Start( &htim2,TIM_CHANNEL_1 );
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,1500);
-
-	HAL_TIM_PWM_Start( &htim11,TIM_CHANNEL_1 );
 	__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1500);
 
-	HAL_Delay(500);
+	HAL_TIM_PWM_Start( &htim1,TIM_CHANNEL_1 );
+	HAL_TIM_PWM_Start( &htim2,TIM_CHANNEL_1 );
+	HAL_TIM_PWM_Start( &htim11,TIM_CHANNEL_1 );
+
+	HAL_Delay(200);
 	// RX/TX disabled
 	nRF24_CE_L();
 
 	// Configure the nRF24L01+
 
-	HAL_Delay(500);
+	HAL_Delay(200);
 	if (!nRF24_Check())
 	{
 
 		while (1)
 		{
 			Toggle_LED();
-			HAL_Delay(100);
+			HAL_Delay(10);
 			if (nRF24_Check()) break;
 		}
 	}
@@ -305,21 +304,20 @@ void movement(void)
 	// The main loop
 	while (1)
 	{
-		HAL_Delay(1);
+
 		// watch dog to make hall motor break if no comunication for 100 cycles
-		if (++wd > 100)
+		if (++wd > 50)
 		{
 			// to make all motor break
+			wd = 201;
 			__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,1500);
 			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,1500);
 			__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1510);
 
-			HAL_Delay(100);
-
-			while (1)
+			if (++blink > 50)
 			{
+				blink = 0;
 				Toggle_LED();
-				HAL_Delay(100);
 			}
 
 		}
@@ -330,24 +328,19 @@ void movement(void)
 		// This is far from best solution, but it's ok for testing purposes
 		// More smart way is to use the IRQ pin :)
 		//
+		HAL_Delay(3);
 		if (nRF24_GetStatus_RXFIFO() != nRF24_STATUS_RXFIFO_EMPTY)
 		{
 
 			wd = 0;
+			HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 
-			if (++blink > 200)
-			{
-				Toggle_LED();
-				blink = 0;
-			}
+
 			// Get a payload from the transceiver
 			pipe = nRF24_ReadPayload(nRF24_payload, &payload_length);
 
 			// Clear all pending IRQ flags
 			nRF24_ClearIRQFlags();
-
-			// Print a payload contents to UART
-
 
 			HAL_Delay(2);
 			uint8_t message[32] = {0xaa,0x44,0x11,0x22,0x55};
