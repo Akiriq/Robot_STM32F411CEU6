@@ -64,8 +64,8 @@ all: main-build
 main-build: Robot_STM32F411CEU6.elf secondary-outputs
 
 # Tool invocations
-Robot_STM32F411CEU6.elf Robot_STM32F411CEU6.map: $(OBJS) $(USER_OBJS) C:\Users\rguilletlhomat\STM32CubeIDE\workspace_1.17.0\Robot_STM32F411CEU6\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Robot_STM32F411CEU6.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\rguilletlhomat\STM32CubeIDE\workspace_1.17.0\Robot_STM32F411CEU6\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Robot_STM32F411CEU6.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Robot_STM32F411CEU6.elf Robot_STM32F411CEU6.map: $(OBJS) $(USER_OBJS) F:\Nucleo_Workspace\Robot_STM32F411CEU6\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Robot_STM32F411CEU6.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\Nucleo_Workspace\Robot_STM32F411CEU6\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Robot_STM32F411CEU6.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -158,7 +158,7 @@ uint8_t channel(void)
 {
 	uint8_t channel = 115;
 	uint8_t set_channel = 0;
-	if(HAL_GPIO_ReadPin (DSW_0_GPIO_Port, DSW_0_Pin)) set_channel += 1;
+	//if(HAL_GPIO_ReadPin (DSW_0_GPIO_Port, DSW_0_Pin)) set_channel += 1;
 	if(HAL_GPIO_ReadPin (DSW_1_GPIO_Port, DSW_1_Pin)) set_channel += 2;
 	if(HAL_GPIO_ReadPin (DSW_2_GPIO_Port, DSW_2_Pin)) set_channel += 4;
 	if(HAL_GPIO_ReadPin (DSW_3_GPIO_Port, DSW_3_Pin)) set_channel += 8;
@@ -316,12 +316,6 @@ void movement(void)
 
 			HAL_Delay(100);
 
-			// to stop all PWM
-			HAL_TIM_PWM_Stop( &htim1,TIM_CHANNEL_1 );
-			HAL_TIM_PWM_Stop( &htim2,TIM_CHANNEL_1 );
-			HAL_TIM_PWM_Stop( &htim11,TIM_CHANNEL_1 );
-
-
 			while (1)
 			{
 				Toggle_LED();
@@ -365,7 +359,7 @@ void movement(void)
 			val_X = nRF24_payload[2];
 			val_Y = nRF24_payload[3];
 		}
-		// uint32_t speed_D_stop = 1450;
+
 		if (dir_R == 0xaa)
 		{
 			// speed of the drum
@@ -409,13 +403,18 @@ void movement(void)
 		}
 		else if (dir_R == 0xcc)
 		{
-			uint32_t wait = 4500;
-			while(wait--)
-			{
+			__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,1500);
+			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,1500);
+			__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1510);
 
-				__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1,1500);
-				__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1,1500);
-				__HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1,1510);
+			HAL_Delay(200);
+
+			// to stop all PWM
+			HAL_TIM_PWM_Stop( &htim1,TIM_CHANNEL_1 );
+			HAL_TIM_PWM_Stop( &htim2,TIM_CHANNEL_1 );
+			HAL_TIM_PWM_Stop( &htim11,TIM_CHANNEL_1 );
+			while(1)
+			{
 				HAL_Delay(200);
 				Toggle_LED();
 			}

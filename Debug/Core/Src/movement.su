@@ -4,4 +4,4 @@
 ../Core/Src/movement.c:67:16:nRF24_TransmitPacket	24	static
 ../Core/Src/movement.c:120:6:send_payload	16	static
 ../Core/Src/movement.c:157:9:channel	16	static
-../Core/Src/movement.c:221:6:movement	72	static
+../Core/Src/movement.c:221:6:movement	64	static
